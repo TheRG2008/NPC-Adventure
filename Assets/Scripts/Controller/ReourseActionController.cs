@@ -18,10 +18,7 @@ public class ReourseActionController : MonoBehaviour
 
     }
 
-    public void DoNothing()
-    {
-        PlayerMove.StartMove();
-    }
+    
 
     
 

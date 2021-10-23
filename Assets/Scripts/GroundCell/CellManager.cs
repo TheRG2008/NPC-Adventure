@@ -5,8 +5,7 @@ using UnityEngine;
 public class CellManager : MonoBehaviour
 {
     [SerializeField] private GroundCell[] _groundCells;
-    [SerializeField] private GameObject[] _enemyes;
-    [SerializeField] private Player _player;
+    [SerializeField] private GameObject[] _enemyes;   
     private int _maxCellWithEnemy;
 
     private void Start()
@@ -55,8 +54,7 @@ public class CellManager : MonoBehaviour
             {
                 if (groundCell.IsOpen == true)
                 {
-                    _groundCells[randomCell].AddEnemy(_enemyes[0]);
-                    //_groundCells[randomCell].ActiveEnemy = _enemyes[0];
+                    _groundCells[randomCell].AddEnemy(_enemyes[0]);                    
                     _maxCellWithEnemy--;
                     if (_maxCellWithEnemy <= 0)
                     {

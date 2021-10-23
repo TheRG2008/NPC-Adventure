@@ -6,13 +6,20 @@ public class RayCastController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     private PanelsManager _panelsManager;
-    [SerializeField] private PlayerMove _playerMove;
+    private PlayerMove _playerMove;
     private Enemy _enemy;
     private IItem _item;
+    private Transform _transform;
 
     public Enemy Enemy => _enemy;
-    public IItem Item  => _item;
+    public IItem Resource  => _item;
+    public Transform Transform => _transform; 
 
+    private void Start()
+    {
+        _panelsManager = FindObjectOfType<PanelsManager>();
+        _playerMove = FindObjectOfType<PlayerMove>();
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -29,15 +36,16 @@ public class RayCastController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.gameObject.GetComponent<Resource>())
-            {
-                _playerMove.StopMove();
+            {                
                 _item = hit.collider.gameObject.GetComponent<Resource>();
-                _panelsManager.ShowResourseActionPanel();
+                _transform = hit.collider.gameObject.transform;
+                _panelsManager.Show(Panels.ResourseActionPanel);                   
             }
             if (hit.collider.gameObject.GetComponent<Enemy>())
             {
                 _enemy = hit.collider.gameObject.GetComponent<Enemy>();
-                _panelsManager.ShowEnemyActionPanel();
+                _transform = hit.collider.gameObject.transform;
+                _panelsManager.Show(Panels.EnemyActionPanel);
             }
         }
     }

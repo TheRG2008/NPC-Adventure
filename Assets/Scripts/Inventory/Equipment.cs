@@ -13,13 +13,11 @@ public class Equipment : ScriptableObject, IItem
     [SerializeField] private int _damage;
     [SerializeField] private int _defence;
     [SerializeField] private float _hpResurection;
-    [SerializeField] private float _spResurection;
-    [SerializeField] private int _maxCount;
+    [SerializeField] private float _spResurection;    
     [SerializeField] private int _price;
     [SerializeField] private float _hp;
     [SerializeField] private float _sp;
-    [SerializeField] private int _weight;
-    [SerializeField] private int _minCount;
+    [SerializeField] private int _weight;    
     private TypeItem _typeItem = TypeItem.Equipment;
     private int _id;
 
@@ -36,11 +34,7 @@ public class Equipment : ScriptableObject, IItem
             }
         }
     }
-    public int MaxCount
-    {
-        get => _maxCount;
-        set => _maxCount = value;
-    }
+    
     public TypeResorce TypeResorce => _typeResorce;
     public string Name => _name;
     public string Description => _description;
@@ -51,9 +45,16 @@ public class Equipment : ScriptableObject, IItem
     public float HpResurection => _hpResurection;
     public float SpResurection => _spResurection;
     public TypeItem TypeItem => _typeItem;
-    public int MinCount => _minCount;
+    
     public int Price => _price;
     public float Hp => _hp;
     public float Sp => _sp;
-    public int Weight => _weight; 
+    public int Weight => _weight;
+
+    public TypeLootResorce TypeLoot => throw new System.NotImplementedException();
+
+    public void RemoveItem(int count)
+    {
+        
+    }
 }

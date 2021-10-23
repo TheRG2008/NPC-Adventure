@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class InventorySlotUpdate : MonoBehaviour
 {       
-    [SerializeField] private Inventory _inventory;
+    private Inventory _inventory;
     [SerializeField] private Slot[] _slot;
 
+    private void Awake()
+    {
+        _inventory = FindObjectOfType<Inventory>();
+    }
     private void Start()
     {
         AddSlotID();
-        //UpdateSlots();
+        
         _inventory.OnStateChanged += UpdateSlots;
     }
 

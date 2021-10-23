@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,23 +23,23 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _move == true)
         {
-            _agent.isStopped = false;
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
+                if(hit.collider.GetComponent<Resource>() ||
+                    hit.collider.GetComponent<Enemy>())
+                {
+                    return;
+                }
                 _agent.SetDestination(hit.point);
             }
         }
     }
-
-    public void StopMove()
-    {
-        _agent.speed = 0;
-    }
-    public void StartMove()
-    {
-        _agent.speed = _speed;
-    }
+   
 }

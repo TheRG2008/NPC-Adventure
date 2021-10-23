@@ -9,13 +9,10 @@ public class ResourceForTest : ScriptableObject, IItem
     [SerializeField] private TypeResorce _typeResorce;
     [SerializeField] private string _name;
     [SerializeField] private string _description;
-    [SerializeField] private Sprite _img;
-    [SerializeField] private int _maxCount;
+    [SerializeField] private Sprite _img;    
     [SerializeField] private int _price;
     private TypeItem _typeItem = TypeItem.Resourse;
-    private int _id;
-
-    [SerializeField] private int _minCount;
+    private int _id;    
     
     public int Count 
     { 
@@ -29,18 +26,19 @@ public class ResourceForTest : ScriptableObject, IItem
             }
         }
     }    
-    public int MaxCount 
-    { 
-        get => _maxCount; 
-        set => _maxCount = value; 
-    }
+    
     public TypeResorce TypeResorce => _typeResorce;   
     public string Name  => _name;
     public string Description => _description;
     public Sprite Img => _img;
     public int ID => _id;
-
-    public TypeItem TypeItem => _typeItem;
-    public int MinCount => _minCount;
+    public TypeItem TypeItem => _typeItem;   
     public int Price => _price;
+
+    public TypeLootResorce TypeLoot => throw new System.NotImplementedException();
+
+    public void RemoveItem(int count)
+    {
+      
+    }
 }

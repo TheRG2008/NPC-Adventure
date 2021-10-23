@@ -4,29 +4,57 @@ using UnityEngine;
 
 public class WorkerList : MonoBehaviour
 {
-    [SerializeField] Player _player;
-    [SerializeField] PanelsManager _panelsManager;
+    private Player _player;
+    private PanelsManager _panelsManager;
     private List<GameObject> _workers;
-
+    public int Size => _workers.Count;
+    
 
     private void Start()
     {
-        _workers = new List<GameObject>();
+        _player = FindObjectOfType<Player>();
+        _panelsManager = FindObjectOfType<PanelsManager>();
+        _workers = new List<GameObject>(6);
     }
-    public GameObject GetWorker(int index)
+    public Worker GetWorker(int index)
     {
-        return _workers[index];
+        if(_workers[index] == null)
+        {
+            return null;
+        }
+        return _workers[index].GetComponent<Worker>();
     }
 
     public void AddWorker(GameObject worker)
     {
         if(_player.Gold < worker.GetComponent<Worker>().GoldForRent)
+        {            
+            _panelsManager.Show(Panels.NotEnoughGold);
+            return;
+        }
+        if(_workers.Count >= _player.MaxWorkerCount)
         {
-            _panelsManager.ShowNotEnoughGoldPanel();
+            _panelsManager.Show(Panels.EnoughSpacePanel);
             return;
         }
         _player.Gold -= worker.GetComponent<Worker>().GoldForRent;
         _workers.Add(worker);
         Debug.Log("Рабочий нанят");
+    }
+
+    public void RemoveWorker(int index)
+    {
+        _workers.RemoveAt(index);
+    }
+
+    public void GetTarget(Transform transform, int index)
+    {
+        _workers[index].GetComponent<Worker>().PositionForCollectResource = transform;
+        _workers[index].GetComponent<Worker>().IsActive = true;
+    }
+    public void RemoveTarget(int index)
+    {
+        _workers[index].GetComponent<Worker>().PositionForCollectResource = null;
+        _workers[index].GetComponent<Worker>().IsActive = false;
     }
 }

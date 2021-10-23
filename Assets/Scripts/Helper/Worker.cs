@@ -13,6 +13,8 @@ public class Worker : MonoBehaviour
     [SerializeField] private string _discription;
     [SerializeField] private Equipment _startEquipment;
     private int _maxCountResorceCollect;
+    private Transform _positionForCollectResource;
+    public bool IsActive = false;
     
     public int Level 
     { 
@@ -30,6 +32,11 @@ public class Worker : MonoBehaviour
     public string Discription => _discription;
     public int MaxCountResorceCollect => _maxCountResorceCollect;
     public Equipment StartEquipment => _startEquipment;
+    public Transform PositionForCollectResource 
+    { 
+        get => _positionForCollectResource; 
+        set => _positionForCollectResource = value; 
+    }
 
     public void ChangeMaxCountResorceCollect()
     {

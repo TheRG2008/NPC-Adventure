@@ -9,7 +9,7 @@ public class ShopItemCountToSell : MonoBehaviour
     [SerializeField] private Text _countItemText;
     [SerializeField] private Text _countOfSaleText;
     [SerializeField] private Text _goldText;
-    [SerializeField] private Inventory _inventory;
+    private Inventory _inventory;
     private int _itemPrice;
     private int _currenItemPrice;
     private int _maxCount;
@@ -22,9 +22,9 @@ public class ShopItemCountToSell : MonoBehaviour
 
     public int ItemPrice => _itemPrice;
 
-    private void Awake()
+    private void Start()
     {
-
+        _inventory = FindObjectOfType<Inventory>();
         Slot.OnSlotCelected += CountItemUpdate;
         CountOfSale = 0;
         _maxCount = 0;

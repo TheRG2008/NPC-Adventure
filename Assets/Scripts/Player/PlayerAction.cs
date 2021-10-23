@@ -4,14 +4,14 @@ using System;
 using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
-{
-    [SerializeField] private GameObject _buttonOpenPanel;
+{   
     private GameObject _darkPanels;
     private int _maxPanelOpenInCurrentDay;
-    [SerializeField] private PanelsManager _panelsManager;
+    private PanelsManager _panelsManager;
 
     private void Start()
     {
+        _panelsManager = FindObjectOfType<PanelsManager>();
         ChangeMaxOpenPanel();
     }
     private void OnTriggerEnter(Collider other)
@@ -20,7 +20,7 @@ public class PlayerAction : MonoBehaviour
         {
             other.gameObject.GetComponent<DarkPanel>().IsTriger = true;
             _darkPanels = other.gameObject;
-            _buttonOpenPanel.SetActive(true);
+            _panelsManager.Show(Panels.OpenDarkPanelShow);            
             other.gameObject.GetComponent<DarkPanel>().ShowCelectPanel();
         }
 
@@ -31,7 +31,7 @@ public class PlayerAction : MonoBehaviour
         if (other.gameObject.GetComponent<DarkPanel>())
         {
             other.gameObject.GetComponent<DarkPanel>().IsTriger = false;
-            _buttonOpenPanel.SetActive(false);
+            _panelsManager.Show(Panels.OpenDarkPanelHide);
             _darkPanels = null;
             other.gameObject.GetComponent<DarkPanel>().HideCelectPanel();
         }
@@ -42,14 +42,15 @@ public class PlayerAction : MonoBehaviour
         {
             if(_maxPanelOpenInCurrentDay <= 0)
             {
-                _panelsManager.ShowMaxDarkPanelAlert();
+                _panelsManager.Show(Panels.MaxDarkPanel);
+                _panelsManager.Show(Panels.OpenDarkPanelHide);
                 return;
             }
             GroundCell groundCell = _darkPanels.GetComponentInParent<GroundCell>();
             groundCell.OpenGroundCell();
             _darkPanels.SetActive(false);
             _darkPanels = null;
-            _buttonOpenPanel.SetActive(false);
+            _panelsManager.Show(Panels.OpenDarkPanelHide);
             _maxPanelOpenInCurrentDay--;
         }
         

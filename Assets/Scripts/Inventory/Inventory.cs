@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour, IInventory
 {
-
+    
     private List<IItem> _items;
     public int Size { get; }
     public List<IItem> Items => _items;
+    private int _maxCountResourse;
+
+    
 
     public event Action OnStateChanged;
 
 
     private void Start()
     {
+        _maxCountResourse = 99;
         _items = new List<IItem>();
+        
     }
 
     
@@ -30,30 +35,33 @@ public class Inventory : MonoBehaviour, IInventory
         return false;
 
     }
-    private bool _AddItem(IItem item)
+    private bool _AddItem(IItem item, int count)
     {
+        item.Count = count;
         _items.Add(item);
+
         OnStateChanged?.Invoke();
         Debug.Log($"{item.Name} new Item add inventory with count {item.Count}");
         return true;
     }
 
-    public bool AddItem(IItem item)
+    public bool AddItem(IItem item, int count)
     {
         for (int i = 0; i < _items.Count; i++)
         {
             if (_items[i] != null && _items[i].Name == item.Name)
             {
-                _items[i].Count += item.MinCount;
-                if(_items[i].Count > item.MaxCount)
+                _items[i].Count += count;
+                if(_items[i].Count > _maxCountResourse)
                 {
-                    _items[i].Count = item.MaxCount; 
+                    _items[i].Count = _maxCountResourse;
+                    return false;
                 }
                 OnStateChanged?.Invoke();
                 return true;
             }
         }
-        return _AddItem(item);
+        return _AddItem(item, count);
     }
     public bool RemoveItem(IItem item)
     {

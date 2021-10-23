@@ -13,7 +13,7 @@ public class Gate : MonoBehaviour
         {
             _playerMove = other.gameObject.GetComponent<PlayerMove>();
             _enterTownCheck.SetActive(true);
-            _playerMove.StopMove();
+            
         }
     }
 
@@ -26,6 +26,6 @@ public class Gate : MonoBehaviour
     public void NotEnterTown()
     {
         _enterTownCheck.SetActive(false);
-        _playerMove.StartMove();
+        
     }
 }

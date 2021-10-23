@@ -7,13 +7,13 @@ public class TavernManager : MonoBehaviour
     [SerializeField] private GameObject[] _heroesLevel1;
     [SerializeField] private GameObject[] _heroesLevel2;
     [SerializeField] private GameObject[] _heroesLevel3;    
-    [SerializeField] private Player _player;
     [SerializeField] private GameObject[] _heroSlot;
     [SerializeField] private GameObject[] _workerSlot;
+    private Player _player;
 
-    private void Start()
+    private void Awake()
     {
-        
+        _player = FindObjectOfType<Player>();
     }
     public GameObject GetHero()
     {

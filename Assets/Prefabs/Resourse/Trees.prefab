@@ -70,6 +70,7 @@ MonoBehaviour:
   _maxCount: 1
   _price: 30
   _minCount: 1
+  _typeLoot: 1
 --- !u!1001 &2342176653345360207
 PrefabInstance:
   m_ObjectHideFlags: 0

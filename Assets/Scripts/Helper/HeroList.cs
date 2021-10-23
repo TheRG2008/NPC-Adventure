@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class HeroList : MonoBehaviour
 {
-    [SerializeField] Player _player;
-    [SerializeField] PanelsManager _panelsManager;
+    private Player _player;
+    private PanelsManager _panelsManager;
     private List<GameObject> _heroes;
 
     private void Start()
     {
+        _player = FindObjectOfType<Player>();
+        _panelsManager = FindObjectOfType<PanelsManager>();
         _heroes = new List<GameObject>();
     }
 
@@ -22,7 +24,7 @@ public class HeroList : MonoBehaviour
     {
         if (_player.Gold < hero.GetComponent<Hero>().GoldForRent)
         {
-            _panelsManager.ShowNotEnoughGoldPanel();
+            _panelsManager.Show(Panels.NotEnoughGold);
             return;
         }
         _player.Gold -= hero.GetComponent<Hero>().GoldForRent;

@@ -20,7 +20,7 @@ public class HeroStatPanel : MonoBehaviour
 
     [SerializeField] private Text _gold;
     [SerializeField] private Image[] _equipImg;
-    [SerializeField] private HeroList _heroList;
+    private HeroList _heroList;
     private Hero _hero;
     private GameObject _heroGameObject;
     private int _currentDefence;
@@ -30,6 +30,7 @@ public class HeroStatPanel : MonoBehaviour
 
     private void Start()
     {
+        _heroList = FindObjectOfType<HeroList>();
         HeroSlot.OnHeroStatsUpdate += StatsUpdate;
         CleanEquipSlots();
         gameObject.SetActive(false);
