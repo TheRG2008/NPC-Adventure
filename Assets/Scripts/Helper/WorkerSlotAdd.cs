@@ -37,11 +37,13 @@ public class WorkerSlotAdd : MonoBehaviour
     public void ShowCheckMark()
     {
         _checkMark.SetActive(true);
+        IsChoise = true;
     }
 
     public void HideCheckMark()
     {
         _checkMark.SetActive(false);
+        IsChoise = false;
     }
 
     public void AddWorkerToSlot(Worker worker)

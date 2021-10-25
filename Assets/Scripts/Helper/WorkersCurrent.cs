@@ -22,7 +22,6 @@ public class WorkersCurrent : MonoBehaviour
         HideAllSlots();
         for (int i = 0; i < _workerList.Size; i++)
         {
-            
             WorkerSlotAdd workerAddSlot = _workerAddSlots[i].GetComponent<WorkerSlotAdd>();
             Worker worker = _workerList.GetWorker(i); 
             _workerAddSlots[i].SetActive(true);
@@ -30,6 +29,14 @@ public class WorkersCurrent : MonoBehaviour
             workerAddSlot.AddWorkerToSlot(worker);
             workerAddSlot.IsOpen = true;
             workerAddSlot.Index = i;
+            if(workerAddSlot.IsChoise == true)
+            {
+                workerAddSlot.ShowCheckMark();
+            }
+            else
+            {
+                workerAddSlot.HideCheckMark();
+            }
         }
 
         HideNotUsingWorkerSlot();
@@ -53,6 +60,12 @@ public class WorkersCurrent : MonoBehaviour
                 _workerAddSlots[i].SetActive(false);
             }
         }
+    }
+
+    public WorkerSlotAdd GetSlot(int index)
+    {
+        return _workerAddSlots[index].GetComponent<WorkerSlotAdd>();
+        
     }
 
     
