@@ -20,10 +20,11 @@ public class WorkersCurrent : MonoBehaviour
         }
 
         HideAllSlots();
+
         for (int i = 0; i < _workerList.Size; i++)
         {
             WorkerSlotAdd workerAddSlot = _workerAddSlots[i].GetComponent<WorkerSlotAdd>();
-            Worker worker = _workerList.GetWorker(i); 
+            Worker worker = _workerList.GetWorkerScript(i); 
             _workerAddSlots[i].SetActive(true);
             workerAddSlot.ShowWorkerImg(worker.Img);
             workerAddSlot.AddWorkerToSlot(worker);

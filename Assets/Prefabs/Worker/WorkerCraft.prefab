@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7171897875499535717}
   - component: {fileID: -4402839212038767217}
   - component: {fileID: 7060661251519668100}
+  - component: {fileID: 1176939223242488785}
+  - component: {fileID: -852273534532848972}
   m_Layer: 0
   m_Name: WorkerCraft
   m_TagString: Untagged
@@ -118,6 +120,7 @@ MonoBehaviour:
   _discription: "\u042F \u043C\u043E\u0433\u0443 \u0434\u043E\u0431\u044B\u0442\u044C
     \u043A\u0430\u043C\u0435\u043D\u044C, \u0434\u0435\u0440\u0435\u0432\u043E, 
     \u0436\u0435\u043B\u0435\u0437\u043E"
+  _startEquipment: {fileID: 0}
 --- !u!195 &-4402839212038767217
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -156,3 +159,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1176939223242488785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7919c326c8c0ea24e95d75616e0d9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-852273534532848972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a703d8bb5c0e68643b2f61229c293261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

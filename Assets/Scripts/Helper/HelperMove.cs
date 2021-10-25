@@ -17,13 +17,13 @@ public class HelperMove : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        Move();
-        
+        Move();       
     }
 
     public void Move()
     {
-        _agent.SetDestination(TargetPoint.position);
+        _targetPoint = gameObject.GetComponent<WorkerAction>().TargetPoint;
+        _agent.SetDestination(_targetPoint.position);
     }
     public void StopMove()
     {

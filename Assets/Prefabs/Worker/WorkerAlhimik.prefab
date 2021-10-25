@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7171897875499535717}
   - component: {fileID: -4402839212038767217}
   - component: {fileID: 7060661251519668100}
+  - component: {fileID: 3988333353976790709}
+  - component: {fileID: -3844562341451681393}
   m_Layer: 0
   m_Name: WorkerAlhimik
   m_TagString: Untagged
@@ -156,3 +158,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3988333353976790709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a703d8bb5c0e68643b2f61229c293261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3844562341451681393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7919c326c8c0ea24e95d75616e0d9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

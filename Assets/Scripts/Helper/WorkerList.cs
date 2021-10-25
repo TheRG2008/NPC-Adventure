@@ -16,13 +16,22 @@ public class WorkerList : MonoBehaviour
         _panelsManager = FindObjectOfType<PanelsManager>();
         _workers = new List<GameObject>(6);
     }
-    public Worker GetWorker(int index)
+    public Worker GetWorkerScript(int index)
     {
         if(_workers[index] == null)
         {
             return null;
         }
         return _workers[index].GetComponent<Worker>();
+    }
+
+    public GameObject GetWorkerGameObject(int index)
+    {
+        if (_workers[index] == null)
+        {
+            return null;
+        }
+        return _workers[index];
     }
 
     public void AddWorker(GameObject worker)
@@ -49,12 +58,12 @@ public class WorkerList : MonoBehaviour
 
     public void GetTarget(Transform transform, int index)
     {
-        _workers[index].GetComponent<Worker>().PositionForCollectResource = transform;
-        _workers[index].GetComponent<Worker>().IsActive = true;
+        _workers[index].GetComponent<WorkerAction>().AddTargetPoint(transform);
+        
     }
     public void RemoveTarget(int index)
     {
-        _workers[index].GetComponent<Worker>().PositionForCollectResource = null;
-        _workers[index].GetComponent<Worker>().IsActive = false;
+        _workers[index].GetComponent<WorkerAction>().RemoveTargetPoint();
+        
     }
 }

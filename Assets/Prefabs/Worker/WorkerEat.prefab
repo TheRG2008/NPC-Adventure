@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7171897875499535717}
   - component: {fileID: -4402839212038767217}
   - component: {fileID: 7060661251519668100}
+  - component: {fileID: -2354599691218514468}
+  - component: {fileID: 631209303353906823}
   m_Layer: 0
   m_Name: WorkerEat
   m_TagString: Untagged
@@ -117,6 +119,7 @@ MonoBehaviour:
   _img: {fileID: 21300000, guid: 113e59d136ce99042a2728164176c398, type: 3}
   _discription: "\u042F \u043C\u043E\u0433\u0443 \u0434\u043E\u0431\u044B\u0442\u044C
     \u043C\u044F\u0441\u043E, \u044F\u0433\u043E\u0434\u044B, \u0433\u0440\u0438\u0431\u044B"
+  _startEquipment: {fileID: 0}
 --- !u!195 &-4402839212038767217
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -155,3 +158,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2354599691218514468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7919c326c8c0ea24e95d75616e0d9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &631209303353906823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107716186763835420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a703d8bb5c0e68643b2f61229c293261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

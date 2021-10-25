@@ -116,20 +116,21 @@ public class WorkerStatPanel : MonoBehaviour
     public void DeleteWorker()
     {
         _workersCurrent = FindObjectOfType<WorkersCurrent>();
+        _workerSlotAdd.HideCheckMark();        
+        RemoveWorker();
         _workerList.RemoveWorker(_workerIndex);        
         _workersCurrent.WorkerSlotUpdate();
-        RemoveWorker();
         gameObject.SetActive(false);
     }
 
     public void ChoiseWorker()
     {
-        Worker worker = _workerList.GetWorker(_workerIndex);
+        Worker worker = _workerList.GetWorkerScript(_workerIndex);
         if(worker.TypelootResorce == _rayCast.Resource.TypeLoot)
         {
             _workersCurrent = FindObjectOfType<WorkersCurrent>();
             _workerList.GetTarget(_rayCast.Transform, _workerIndex);           
-            _workerSlotAdd.ShowCheckMark();
+            _workerSlotAdd.ShowCheckMark();            
             _panelsManager.Show(Panels.WorkerSelected);
             gameObject.SetActive(false);
         }
@@ -143,9 +144,8 @@ public class WorkerStatPanel : MonoBehaviour
 
     public void RemoveWorker()
     {
-        _workerList.RemoveTarget(_workerIndex);
-        _workersCurrent = FindObjectOfType<WorkersCurrent>();        
-        _workerSlotAdd.HideCheckMark();
+        _workerList.RemoveTarget(_workerIndex);             
+        _workerSlotAdd.HideCheckMark();        
     }
 
   
