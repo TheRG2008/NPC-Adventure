@@ -122,5 +122,10 @@ public class WorkerStatPanel : MonoBehaviour
 
     }
 
+    public void RemoveWorker()
+    {
+        _workerList.RemoveTarget(_workerIndex);
+    }
+
   
 }
