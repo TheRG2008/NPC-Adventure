@@ -15,8 +15,11 @@ public class WorkerStatPanel : MonoBehaviour
     [SerializeField] private Image _equipImg;
     [SerializeField] private GameObject[] _elementForHide;
     [SerializeField] private GameObject[] _workerControlButtons;
+    [SerializeField] private GameObject _choiseButton;
+    [SerializeField] private GameObject _removeButton;
     private WorkerList _workerList;
     private WorkersCurrent _workersCurrent;
+    private WorkerSlotAdd _workerSlotAdd;
     private Worker _worker;
     private GameObject _workerGameObject;
     private int _currentAddResourse;
@@ -37,7 +40,7 @@ public class WorkerStatPanel : MonoBehaviour
         WorkerSlotAdd.OnWorkerAddStatsUpdate += StatsUpdate;
         WorkerSlotAdd.OnWorkerAddStatsUpdate += HideByeWorkerElements;
         WorkerSlotAdd.OnWorkerAddStatsUpdate += ShowWorkerControlButton;
-        WorkerSlotAdd.OnWorkerIndexUpdate += WorkerIndexUpdate;
+        WorkerSlotAdd.OnWorkerIndexUpdate += WorkerIndexAndButtonUpdate;
         gameObject.SetActive(false);
     }
     public void StatsUpdate(Worker worker)
@@ -90,9 +93,20 @@ public class WorkerStatPanel : MonoBehaviour
             _workerControlButtons[i].SetActive(false);
         }
     }
-    private void WorkerIndexUpdate (WorkerSlotAdd workerSlotAdd)
+    private void WorkerIndexAndButtonUpdate (WorkerSlotAdd workerSlotAdd)
     {
+        _workerSlotAdd = workerSlotAdd;
         _workerIndex = workerSlotAdd.Index;
+        if(workerSlotAdd.IsChoise == true)
+        {
+            _choiseButton.SetActive(false);
+            _removeButton.SetActive(true);
+        }
+        else
+        {
+            _choiseButton.SetActive(true);
+            _removeButton.SetActive(false);
+        }
     }
 
     public void BuyWorker()
@@ -104,6 +118,7 @@ public class WorkerStatPanel : MonoBehaviour
         _workersCurrent = FindObjectOfType<WorkersCurrent>();
         _workerList.RemoveWorker(_workerIndex);        
         _workersCurrent.WorkerSlotUpdate();
+        RemoveWorker();
         gameObject.SetActive(false);
     }
 
@@ -112,14 +127,25 @@ public class WorkerStatPanel : MonoBehaviour
         Worker worker = _workerList.GetWorker(_workerIndex);
         if(worker.TypelootResorce == _rayCast.Resource.TypeLoot)
         {
-            _workerList.GetTarget(_rayCast.Transform, _workerIndex);            
+            _workersCurrent = FindObjectOfType<WorkersCurrent>();
+            _workerList.GetTarget(_rayCast.Transform, _workerIndex);           
+            _workerSlotAdd.ShowCheckMark();
             _panelsManager.Show(Panels.WorkerSelected);
+            gameObject.SetActive(false);
         }
         else
         {
-            _panelsManager.Show(Panels.Impossible);            
+            _panelsManager.Show(Panels.Impossible);
+            gameObject.SetActive(false);
         }
 
+    }
+
+    public void RemoveWorker()
+    {
+        _workerList.RemoveTarget(_workerIndex);
+        _workersCurrent = FindObjectOfType<WorkersCurrent>();        
+        _workerSlotAdd.HideCheckMark();
     }
 
   
