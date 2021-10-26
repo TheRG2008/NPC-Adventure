@@ -128,8 +128,8 @@ public class WorkerStatPanel : MonoBehaviour
         Worker worker = _workerList.GetWorkerScript(_workerIndex);
         if(worker.TypelootResorce == _rayCast.Resource.TypeLoot)
         {
-            _workersCurrent = FindObjectOfType<WorkersCurrent>();
-            _workerList.GetTarget(_rayCast.Transform, _workerIndex);           
+            //_workerList.GetTarget(_rayCast.Transform, _workerIndex);
+            _workerList.AddTarget(_rayCast.Transform, _workerIndex);
             _workerSlotAdd.ShowCheckMark();            
             _panelsManager.Show(Panels.WorkerSelected);
             gameObject.SetActive(false);

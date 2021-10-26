@@ -7,6 +7,7 @@ public class WorkerList : MonoBehaviour
     private Player _player;
     private PanelsManager _panelsManager;
     private List<GameObject> _workers;
+    private List<Transform> _targets;
     public int Size => _workers.Count;
     
 
@@ -14,7 +15,8 @@ public class WorkerList : MonoBehaviour
     {
         _player = FindObjectOfType<Player>();
         _panelsManager = FindObjectOfType<PanelsManager>();
-        _workers = new List<GameObject>(6);
+        _workers = new List<GameObject>();
+        _targets = new List<Transform>();
     }
     public Worker GetWorkerScript(int index)
     {
@@ -56,6 +58,12 @@ public class WorkerList : MonoBehaviour
         _workers.RemoveAt(index);
     }
 
+    public void AddTarget(Transform transform, int index)
+    {
+        _targets.Add(transform);
+        _workers[index].GetComponent<Worker>().TargetIndex = _targets.Count - 1;
+    }
+
     public void GetTarget(Transform transform, int index)
     {
         _workers[index].GetComponent<WorkerAction>().AddTargetPoint(transform);
@@ -63,7 +71,6 @@ public class WorkerList : MonoBehaviour
     }
     public void RemoveTarget(int index)
     {
-        _workers[index].GetComponent<WorkerAction>().RemoveTargetPoint();
-        
+        _workers[index].GetComponent<WorkerAction>().RemoveTargetPoint();        
     }
 }

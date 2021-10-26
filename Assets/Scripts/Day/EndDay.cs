@@ -16,7 +16,7 @@ public class EndDay : MonoBehaviour
     {
         for (int i = 0; i < _workerList.Size; i++)
         {
-            if (_workerList.GetWorkerScript(i).GetComponent<WorkerAction>().IsActive == true)
+            if (_workerList.GetWorkerScript(i).GetComponent<WorkerAction>().IsActive)
             {
                 Instantiate(_workerList.GetWorkerGameObject(i), _helperStartPosition);
             }

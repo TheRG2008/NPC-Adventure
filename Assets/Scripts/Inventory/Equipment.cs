@@ -53,8 +53,23 @@ public class Equipment : ScriptableObject, IItem
 
     public TypeLootResorce TypeLoot => throw new System.NotImplementedException();
 
+    public IItem Copy()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public IItem GiveResource(int count)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void RemoveItem(int count)
     {
         
+    }
+
+    int IItem.RemoveItem(int count)
+    {
+        throw new System.NotImplementedException();
     }
 }

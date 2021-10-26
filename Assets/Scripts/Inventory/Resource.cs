@@ -24,6 +24,7 @@ public class Resource : MonoBehaviour, IItem
             _count = value;
             if (_count <= 0)
             {
+                DestroyResourse();
                 _count = 0;
             }
         }
@@ -41,10 +42,37 @@ public class Resource : MonoBehaviour, IItem
 
     public TypeLootResorce TypeLoot => _typeLoot;   
 
-    public void RemoveItem (int count)
+    public int RemoveItem (int count)
     {
+        if (count > _count)
+        {
+            count = _count;
+            Count = 0;
+            return count;
+           
+        }
         _count -= count;
+        return count;
     }
 
+    public void DestroyResourse ()
+    {
+        Destroy(gameObject);
+    }
 
+    public IItem Copy()
+    {
+       Resource resource = new Resource();
+        resource.Count = _count;
+        resource._typeResorce = _typeResorce;
+        resource._name = _name;
+        resource._description = _description;
+        resource._img = _img;
+        resource._price = _price;
+        resource._typeLoot = _typeLoot;
+        resource._typeItem = _typeItem;
+        resource._id = _id;
+
+        return resource;        
+    }
 }

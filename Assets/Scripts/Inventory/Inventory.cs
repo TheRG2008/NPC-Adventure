@@ -35,9 +35,9 @@ public class Inventory : MonoBehaviour, IInventory
         return false;
 
     }
-    private bool _AddItem(IItem item, int count)
+    private bool _AddItem(IItem item)
     {
-        item.Count = count;
+        
         _items.Add(item);
 
         OnStateChanged?.Invoke();
@@ -45,13 +45,13 @@ public class Inventory : MonoBehaviour, IInventory
         return true;
     }
 
-    public bool AddItem(IItem item, int count)
+    public bool AddItem(IItem item)
     {
         for (int i = 0; i < _items.Count; i++)
         {
             if (_items[i] != null && _items[i].Name == item.Name)
             {
-                _items[i].Count += count;
+                _items[i].Count += item.Count;
                 if(_items[i].Count > _maxCountResourse)
                 {
                     _items[i].Count = _maxCountResourse;
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour, IInventory
                 return true;
             }
         }
-        return _AddItem(item, count);
+        return _AddItem(item);
     }
     public bool RemoveItem(IItem item)
     {

@@ -16,7 +16,8 @@ public interface IItem
     TypeResorce TypeResorce { get; }
     TypeItem TypeItem { get; }
     Sprite Img { get; }
-    public void RemoveItem(int count);
-    
+    public int RemoveItem(int count);   
+    public IItem Copy();
+
 
 }

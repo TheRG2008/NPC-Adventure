@@ -7,6 +7,7 @@ public class HelperMove : MonoBehaviour
 {
     private Transform _targetPoint;
     private NavMeshAgent _agent;
+    private RayCastController _rayCast;
 
     public Transform TargetPoint 
     { 
@@ -16,13 +17,15 @@ public class HelperMove : MonoBehaviour
 
     void Start()
     {
+        _rayCast = FindObjectOfType<RayCastController>();
         _agent = GetComponent<NavMeshAgent>();
         Move();       
     }
 
     public void Move()
     {
-        _targetPoint = gameObject.GetComponent<WorkerAction>().TargetPoint;
+        //_targetPoint = gameObject.GetComponent<WorkerAction>().TargetPoint;
+        _targetPoint = _rayCast.WorkerTargets[0];
         _agent.SetDestination(_targetPoint.position);
     }
     public void StopMove()

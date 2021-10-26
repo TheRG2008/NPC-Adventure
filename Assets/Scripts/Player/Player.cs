@@ -16,8 +16,7 @@ public class Player : MonoBehaviour
     public event Action OnMainStatsChanged;
     private int _maxResourceForCollect;
     private int _currentCollectedResourse;
-    private IItem _item;
-    private Inventory _inventory;
+   
 
     public int Level 
     { 
@@ -84,59 +83,20 @@ public class Player : MonoBehaviour
         get => _currentCollectedResourse; 
         set => _currentCollectedResourse = value; 
     }
+    public int MaxResourceForCollect => _maxResourceForCollect; 
 
     private void Start()
     {
-        
-        _inventory = FindObjectOfType<Inventory>();
         _maxResourceForCollect = 10;
         _currentCollectedResourse = 0;
         _maxWorkerCount = 2;
         _expForNextLevel = new int[] { 200, 400, 600, 800, 1000, 1200 }; 
-        TargetExp = _expForNextLevel[0];
-        
+        TargetExp = _expForNextLevel[0];        
     }
     public void LevelChange()
     {
         TargetExp = _expForNextLevel[_level];
         _level++;
     }
-    public int CollectResource(int countResource, IItem item)
-    {
-        if (_item == null)
-        {
-            _currentCollectedResourse += countResource;
-            _item = item;               
-                
-            if (_currentCollectedResourse > _maxResourceForCollect)
-            {
-                int count = countResource - (_currentCollectedResourse - _maxResourceForCollect);
-                _currentCollectedResourse = _maxResourceForCollect;
-                
-                _inventory.AddItem(_item, count);
-                return count;
-            }
-            
-            _inventory.AddItem(_item, countResource);
-            return countResource;
-            
-        }
-        else if (_item.TypeResorce == item.TypeResorce)
-        {
-            if (_currentCollectedResourse < _maxResourceForCollect)
-            {
-                _currentCollectedResourse += countResource;
-                if (_currentCollectedResourse > _maxResourceForCollect)
-                {
-                    int count = countResource - (_currentCollectedResourse - _maxResourceForCollect);
-                    _currentCollectedResourse = _maxResourceForCollect;                    
-                    _inventory.AddItem(_item, count);
-                    return count;
-                }
-            }
-            
-        }
-       
-        return 0;
-    }
+    
 }

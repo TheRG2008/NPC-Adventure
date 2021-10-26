@@ -5,16 +5,17 @@ using UnityEngine;
 public class WorkerAction : MonoBehaviour
 {
     private ResourceForTest _collectResource;
-    private int _curentCountResource = 0;
+    private int _curentCountResource;
     private Worker _worker;
     private Transform _targetPoint;
-    private bool _isActive;
+    private bool _isActive = false;
 
     public Transform TargetPoint => _targetPoint;
     public bool IsActive => _isActive;
 
     private void Awake()
     {
+        _curentCountResource = 0;
         _isActive = false;
         _worker = gameObject.GetComponent<Worker>();
 

@@ -10,6 +10,7 @@ public class RayCastController : MonoBehaviour
     private Enemy _enemy;
     private IItem _item;
     private Transform _transform;
+    public List<Transform> WorkerTargets;
 
     public Enemy Enemy => _enemy;
     public IItem Resource  => _item;
@@ -17,6 +18,7 @@ public class RayCastController : MonoBehaviour
 
     private void Start()
     {
+        WorkerTargets = new List<Transform>();
         _panelsManager = FindObjectOfType<PanelsManager>();
         _playerMove = FindObjectOfType<PlayerMove>();
     }
@@ -39,6 +41,7 @@ public class RayCastController : MonoBehaviour
             {                
                 _item = hit.collider.gameObject.GetComponent<Resource>();
                 _transform = hit.collider.gameObject.transform;
+                WorkerTargets.Add(hit.collider.gameObject.transform);
                 _panelsManager.Show(Panels.ResourseActionPanel);                   
             }
             if (hit.collider.gameObject.GetComponent<Enemy>())

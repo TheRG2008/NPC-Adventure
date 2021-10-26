@@ -7,28 +7,42 @@ public class PlayerCollectResource : MonoBehaviour
     private RayCastController _rayCast;
     private PanelsManager _panelsManager;
     private Player _player;
+    private Inventory _inventory;
+    private IItem _item;
+    private int _currentCollectedResourse;
+    private int _maxResourceForCollect;
 
     private void Start()
     {
+        _maxResourceForCollect = 10;
+        _inventory = FindObjectOfType<Inventory>();
         _rayCast = FindObjectOfType<RayCastController>();
         _panelsManager = FindObjectOfType<PanelsManager>();
         _player = FindObjectOfType<Player>();
     }
     public void CollectResource()
     {
-        
-        if (_rayCast.Resource.Count > 0)
+        int count = CollectResource(_maxResourceForCollect, _rayCast.Resource);
+        if (count > 0)
         {
-            int deleteResourceCount = _player.CollectResource(_rayCast.Resource.Count, _rayCast.Resource);
-            if (deleteResourceCount > 0)
-            {
-                _rayCast.Resource.RemoveItem(deleteResourceCount);
-                _panelsManager.Show(Panels.CollectResource);
-                return;
-            }
-            
+            _panelsManager.Show(Panels.CollectResource);
+            return;
         }
-
         _panelsManager.Show(Panels.Impossible);
+    }
+
+    public int CollectResource(int countResource, IItem item)
+    {
+        if (_item == null)
+        {
+            int removeCount = item.RemoveItem(countResource);
+            _currentCollectedResourse += removeCount;
+            _item = _rayCast.Resource.Copy();
+            _item.Count = _currentCollectedResourse;
+            _inventory.AddItem(_item);
+            return _currentCollectedResourse;
+        }
+       
+        return 0;
     }
 }

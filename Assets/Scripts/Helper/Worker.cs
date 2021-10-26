@@ -13,7 +13,8 @@ public class Worker : MonoBehaviour
     [SerializeField] private string _discription;
     [SerializeField] private Equipment _startEquipment;
     private int _maxCountResorceCollect;
-   
+
+    public int TargetIndex;
     
     public int Level 
     { 
